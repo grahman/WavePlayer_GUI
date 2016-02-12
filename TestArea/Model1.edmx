@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GMBAudioLibraryModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="GMBAudioLibraryModelStoreContainer">
+          <EntitySet Name="FILES" EntityType="GMBAudioLibraryModel.Store.FILES" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MARKERS" EntityType="GMBAudioLibraryModel.Store.MARKERS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="METADATA" EntityType="GMBAudioLibraryModel.Store.METADATA" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PLAYLISTS" EntityType="GMBAudioLibraryModel.Store.PLAYLISTS" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_METADATA__FILES" Association="GMBAudioLibraryModel.Store.FK_METADATA__FILES">
+            <End Role="FILES" EntitySet="FILES" />
+            <End Role="METADATA" EntitySet="METADATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PLAYLISTS_FILES" Association="GMBAudioLibraryModel.Store.FK_PLAYLISTS_FILES">
+            <End Role="FILES" EntitySet="FILES" />
+            <End Role="PLAYLISTS" EntitySet="PLAYLISTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PLAYLISTS_METADATA" Association="GMBAudioLibraryModel.Store.FK_PLAYLISTS_METADATA">
+            <End Role="METADATA" EntitySet="METADATA" />
+            <End Role="PLAYLISTS" EntitySet="PLAYLISTS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FILES">
+          <Key>
+            <PropertyRef Name="NAME" />
+          </Key>
+          <Property Name="NAME" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="PATH" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DATASTARTPOS" Type="bigint" />
+          <Property Name="DATALENGTH" Type="bigint" />
+        </EntityType>
+        <EntityType Name="MARKERS">
+          <Key>
+            <PropertyRef Name="NAME" />
+            <PropertyRef Name="POS" />
+            <PropertyRef Name="PLAYLIST" />
+          </Key>
+          <Property Name="NAME" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="POS" Type="int" Nullable="false" />
+          <Property Name="COMMENT" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="PLAYLIST" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="METADATA">
+          <Key>
+            <PropertyRef Name="NAME" />
+          </Key>
+          <Property Name="NAME" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="100" />
+          <Property Name="ARTIST" Type="nvarchar" MaxLength="100" />
+          <Property Name="DURATION" Type="int" />
+          <Property Name="GENRE" Type="nvarchar" MaxLength="100" />
+          <Property Name="YEAR" Type="date" />
+        </EntityType>
+        <EntityType Name="PLAYLISTS">
+          <Key>
+            <PropertyRef Name="PLNAME" />
+            <PropertyRef Name="INDEX" />
+          </Key>
+          <Property Name="PLNAME" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="INDEX" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_METADATA__FILES">
+          <End Role="FILES" Type="GMBAudioLibraryModel.Store.FILES" Multiplicity="1" />
+          <End Role="METADATA" Type="GMBAudioLibraryModel.Store.METADATA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="FILES">
+              <PropertyRef Name="NAME" />
+            </Principal>
+            <Dependent Role="METADATA">
+              <PropertyRef Name="NAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PLAYLISTS_FILES">
+          <End Role="FILES" Type="GMBAudioLibraryModel.Store.FILES" Multiplicity="1" />
+          <End Role="PLAYLISTS" Type="GMBAudioLibraryModel.Store.PLAYLISTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FILES">
+              <PropertyRef Name="NAME" />
+            </Principal>
+            <Dependent Role="PLAYLISTS">
+              <PropertyRef Name="NAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PLAYLISTS_METADATA">
+          <End Role="METADATA" Type="GMBAudioLibraryModel.Store.METADATA" Multiplicity="1" />
+          <End Role="PLAYLISTS" Type="GMBAudioLibraryModel.Store.PLAYLISTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="METADATA">
+              <PropertyRef Name="NAME" />
+            </Principal>
+            <Dependent Role="PLAYLISTS">
+              <PropertyRef Name="NAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GMBAudioLibraryModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GMBAudioLibraryEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="FILES" EntityType="GMBAudioLibraryModel.FILE" />
+          <EntitySet Name="MARKERS" EntityType="GMBAudioLibraryModel.MARKER" />
+          <EntitySet Name="METADATAs" EntityType="GMBAudioLibraryModel.METADATA" />
+          <EntitySet Name="PLAYLISTS" EntityType="GMBAudioLibraryModel.PLAYLIST" />
+          <AssociationSet Name="FK_FILES_METADATA" Association="GMBAudioLibraryModel.FK_FILES_METADATA">
+            <End Role="METADATA" EntitySet="METADATAs" />
+            <End Role="FILES" EntitySet="FILES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PLAYLISTS_FILES" Association="GMBAudioLibraryModel.FK_PLAYLISTS_FILES">
+            <End Role="FILES" EntitySet="FILES" />
+            <End Role="PLAYLISTS" EntitySet="PLAYLISTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PLAYLISTS_METADATA" Association="GMBAudioLibraryModel.FK_PLAYLISTS_METADATA">
+            <End Role="METADATA" EntitySet="METADATAs" />
+            <End Role="PLAYLISTS" EntitySet="PLAYLISTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_METADATA__FILES" Association="GMBAudioLibraryModel.FK_METADATA__FILES">
+            <End Role="FILE" EntitySet="FILES" />
+            <End Role="METADATA" EntitySet="METADATAs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FILE">
+          <Key>
+            <PropertyRef Name="NAME" />
+          </Key>
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PATH" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DATASTARTPOS" Type="Int64" />
+          <Property Name="DATALENGTH" Type="Int64" />
+          <NavigationProperty Name="METADATA" Relationship="GMBAudioLibraryModel.FK_FILES_METADATA" FromRole="FILES" ToRole="METADATA" />
+          <NavigationProperty Name="PLAYLISTS" Relationship="GMBAudioLibraryModel.FK_PLAYLISTS_FILES" FromRole="FILES" ToRole="PLAYLISTS" />
+          <NavigationProperty Name="METADATA1" Relationship="GMBAudioLibraryModel.FK_METADATA__FILES" FromRole="FILE" ToRole="METADATA" />
+        </EntityType>
+        <EntityType Name="MARKER">
+          <Key>
+            <PropertyRef Name="NAME" />
+            <PropertyRef Name="POS" />
+            <PropertyRef Name="PLAYLIST" />
+          </Key>
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="POS" Type="Int32" Nullable="false" />
+          <Property Name="COMMENT" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="PLAYLIST" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="METADATA">
+          <Key>
+            <PropertyRef Name="NAME" />
+          </Key>
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TITLE" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ARTIST" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="DURATION" Type="Int32" />
+          <Property Name="GENRE" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="YEAR" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="FILE" Relationship="GMBAudioLibraryModel.FK_FILES_METADATA" FromRole="METADATA" ToRole="FILES" />
+          <NavigationProperty Name="PLAYLISTS" Relationship="GMBAudioLibraryModel.FK_PLAYLISTS_METADATA" FromRole="METADATA" ToRole="PLAYLISTS" />
+          <NavigationProperty Name="FILE1" Relationship="GMBAudioLibraryModel.FK_METADATA__FILES" FromRole="METADATA" ToRole="FILE" />
+        </EntityType>
+        <EntityType Name="PLAYLIST">
+          <Key>
+            <PropertyRef Name="PLNAME" />
+            <PropertyRef Name="INDEX" />
+          </Key>
+          <Property Name="PLNAME" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="INDEX" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="FILE" Relationship="GMBAudioLibraryModel.FK_PLAYLISTS_FILES" FromRole="PLAYLISTS" ToRole="FILES" />
+          <NavigationProperty Name="METADATA" Relationship="GMBAudioLibraryModel.FK_PLAYLISTS_METADATA" FromRole="PLAYLISTS" ToRole="METADATA" />
+        </EntityType>
+        <Association Name="FK_FILES_METADATA">
+          <End Role="METADATA" Type="GMBAudioLibraryModel.METADATA" Multiplicity="1" />
+          <End Role="FILES" Type="GMBAudioLibraryModel.FILE" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="METADATA">
+              <PropertyRef Name="NAME" />
+            </Principal>
+            <Dependent Role="FILES">
+              <PropertyRef Name="NAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PLAYLISTS_FILES">
+          <End Role="FILES" Type="GMBAudioLibraryModel.FILE" Multiplicity="1" />
+          <End Role="PLAYLISTS" Type="GMBAudioLibraryModel.PLAYLIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FILES">
+              <PropertyRef Name="NAME" />
+            </Principal>
+            <Dependent Role="PLAYLISTS">
+              <PropertyRef Name="NAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PLAYLISTS_METADATA">
+          <End Role="METADATA" Type="GMBAudioLibraryModel.METADATA" Multiplicity="1" />
+          <End Role="PLAYLISTS" Type="GMBAudioLibraryModel.PLAYLIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="METADATA">
+              <PropertyRef Name="NAME" />
+            </Principal>
+            <Dependent Role="PLAYLISTS">
+              <PropertyRef Name="NAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_METADATA__FILES">
+          <End Type="GMBAudioLibraryModel.FILE" Role="FILE" Multiplicity="1" />
+          <End Type="GMBAudioLibraryModel.METADATA" Role="METADATA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="FILE">
+              <PropertyRef Name="NAME" />
+            </Principal>
+            <Dependent Role="METADATA">
+              <PropertyRef Name="NAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GMBAudioLibraryModelStoreContainer" CdmEntityContainer="GMBAudioLibraryEntities">
+          <EntitySetMapping Name="FILES">
+            <EntityTypeMapping TypeName="GMBAudioLibraryModel.FILE">
+              <MappingFragment StoreEntitySet="FILES">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PATH" ColumnName="PATH" />
+                <ScalarProperty Name="DATASTARTPOS" ColumnName="DATASTARTPOS" />
+                <ScalarProperty Name="DATALENGTH" ColumnName="DATALENGTH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MARKERS">
+            <EntityTypeMapping TypeName="GMBAudioLibraryModel.MARKER">
+              <MappingFragment StoreEntitySet="MARKERS">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="POS" ColumnName="POS" />
+                <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+                <ScalarProperty Name="PLAYLIST" ColumnName="PLAYLIST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="METADATAs">
+            <EntityTypeMapping TypeName="GMBAudioLibraryModel.METADATA">
+              <MappingFragment StoreEntitySet="METADATA">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="ARTIST" ColumnName="ARTIST" />
+                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+                <ScalarProperty Name="GENRE" ColumnName="GENRE" />
+                <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PLAYLISTS">
+            <EntityTypeMapping TypeName="GMBAudioLibraryModel.PLAYLIST">
+              <MappingFragment StoreEntitySet="PLAYLISTS">
+                <ScalarProperty Name="PLNAME" ColumnName="PLNAME" />
+                <ScalarProperty Name="INDEX" ColumnName="INDEX" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

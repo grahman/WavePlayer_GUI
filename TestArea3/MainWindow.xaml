@@ -1,0 +1,77 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WPFSoundVisualizationLib="clr-namespace:WPFSoundVisualizationLib;assembly=WPFSoundVisualizationLib" x:Class="TestArea2.MainWindow"
+        Title="MainWindow" Height="600" Width="800" MinHeight="600" MinWidth="800">
+    <Grid>
+        <DockPanel LastChildFill="True">
+            <Grid x:Name="AudioQPanel1" DockPanel.Dock="Left" MinWidth="300" MaxWidth="300">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100px" />
+                    <RowDefinition Height="0.25*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!--Grid content definitions-->
+
+                <WPFSoundVisualizationLib:WaveformTimeline x:Name="WaveformTimelineDisplay" Grid.ColumnSpan="5" Grid.RowSpan="1" VerticalAlignment="Center"/>
+                <Button x:Name="Btn_Prev"       Grid.Row="1"    Grid.Column="0" />
+                <Button x:Name="Btn_Rev"        Grid.Row="1"    Grid.Column="1" />
+                <Button x:Name="Btn_PlayPause"  Grid.Row="1"    Grid.Column="2" />
+                <Button x:Name="Btn_Next"       Grid.Row="1"    Grid.Column="3" />
+                <Slider x:Name="Sldr_Gain"      Grid.Row="1"    Grid.Column="4" Grid.RowSpan="2" Orientation="Vertical" HorizontalAlignment="Center" />
+                <Label  x:Name="Lbl_Metadata"   Grid.Row="2"    Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Label"/>
+
+            </Grid>
+
+            
+            <Grid x:Name="AudioQPanel2" DockPanel.Dock="Right" MinWidth="100" MaxWidth="100" HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100px" />
+                    <RowDefinition Height="0.25*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <!--Grid content definitions-->
+
+                <WPFSoundVisualizationLib:WaveformTimeline x:Name="WaveformTimelineDisplay2" Grid.ColumnSpan="5" Grid.RowSpan="1" VerticalAlignment="Center"/>
+                <Button x:Name="Btn_Prev2"       Grid.Row="1"    Grid.Column="0" />
+                <Button x:Name="Btn_Rev2"        Grid.Row="1"    Grid.Column="1" />
+                <Button x:Name="Btn_PlayPause2"  Grid.Row="1"    Grid.Column="2" />
+                <Button x:Name="Btn_Next2"       Grid.Row="1"    Grid.Column="3" />
+                <Slider x:Name="Sldr_Gain2"      Grid.Row="1"    Grid.Column="4" Grid.RowSpan="2" Orientation="Vertical" HorizontalAlignment="Center" />
+                <Label  x:Name="Lbl_Metadata2"   Grid.Row="2"    Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Label"/>
+
+            </Grid>
+
+            <!--Center Area-->
+            <Grid x:Name="CenterPanel" MinWidth="150px" DockPanel.Dock="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" MinWidth="100px"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100px"/>
+                    <RowDefinition Height="7.5*" />
+                    <RowDefinition Height="2.5*" />
+                </Grid.RowDefinitions>
+                <Button>Text</Button>
+                <Button Grid.Row="1">Text2</Button>
+                <Button Grid.Row="2"></Button>
+            </Grid>
+
+           
+        </DockPanel>
+    </Grid>
+</Window>
