@@ -1,0 +1,14 @@
+﻿<Application x:Class="TestArea2.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <BitmapImage x:Key="btn_play" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="C:\Users\Graham\Programming\GMB\DJApp\GMBDSPDJ_GUI\TestArea2\btn_play.bmp"/>
+        <BitmapImage x:Key="btns_rev" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="C:\Users\Graham\Programming\GMB\DJApp\GMBDSPDJ_GUI\TestArea2\btns_rev.png"/>
+        <BitmapImage x:Key="btns_reverse" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="C:\Users\Graham\Programming\GMB\DJApp\GMBDSPDJ_GUI\TestArea2\btns_reverse.png"/>
+        <BitmapImage x:Key="btns_next" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="C:\Users\Graham\Programming\GMB\DJApp\GMBDSPDJ_GUI\TestArea2\btns_next.png"/>
+        <BitmapImage x:Key="btns_play" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="C:\Users\Graham\Programming\GMB\DJApp\GMBDSPDJ_GUI\TestArea2\btn_play.png"/>
+
+    </Application.Resources>
+</Application>

@@ -1,0 +1,27 @@
+﻿<Window x:Class="TestArea2.PlaylistEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PlaylistEditor" Height="300" Width="300">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="MenuBarGridRow" Height="25"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <ComboBox x:Name="CboBox_PlSelector" Text="Select a playlist..." ToolTip="Select a playlist..."></ComboBox>
+        <ListBox x:Name="LstBox_PslEditor" SelectedValuePath="INDEX" DisplayMemberPath="NAME" Grid.Row="1"></ListBox>
+        <Grid x:Name="AddRemoveBtnGrid" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Btn_Plus" Grid.Column="0" ToolTip="Add song" Click="GMBPlusButtonClicked">+</Button>
+            <Button x:Name="Btn_Minus" Grid.Column="1" ToolTip="Remove song">-</Button>
+        </Grid>
+
+    </Grid>
+</Window>

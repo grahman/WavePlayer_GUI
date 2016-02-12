@@ -1,0 +1,68 @@
+﻿<Window x:Class="TestArea2.MarkerEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WPFSoundVisualizationLib="clr-namespace:WPFSoundVisualizationLib;assembly=WPFSoundVisualizationLib"
+        Title="MarkerEditor" Height="500" Width="800" MinHeight="500" MinWidth="800" >
+    <Grid x:Name="PrimaryGrid" Margin="0">
+        <StackPanel Orientation="Vertical" Margin="0,0,0,0">
+            <Menu IsMainMenu="True" VerticalAlignment="Top">
+                <MenuItem Header="_File" VerticalAlignment="Top" />
+                <MenuItem Header="_Edit" />
+                <MenuItem Header="_View" />
+                <MenuItem Header="_Window" VerticalAlignment="Top" />
+                <MenuItem Header="_Help" />
+            </Menu>
+        </StackPanel>
+        <Grid x:Name="MarkerListAndDetailsGrid">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFC3C3C3" Offset="0.239"/>
+                        <GradientStop Color="#FFE6E6E6" Offset="0.791"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition  />
+                    <RowDefinition  />
+                </Grid.RowDefinitions>
+                <WPFSoundVisualizationLib:WaveformTimeline x:Name="MarkerWaveformTimeline" MinHeight="200" MaxHeight="200" VerticalAlignment="Center"/>
+            <DockPanel x:Name="DckPnl_MarkerList" Grid.Row="1" VerticalAlignment="Top">
+                    <ListBox x:Name="LstBox_Markers" DockPanel.Dock="Left" Width="300" Margin="10" Padding="10,0,0,10" VerticalAlignment="Top">
+                        <ListBoxItem>Marker1</ListBoxItem>
+                        <ListBoxItem>Marker2</ListBoxItem>
+                        <ListBoxItem>Marker3</ListBoxItem>
+                    </ListBox>
+
+                    <!--This is the details area of the selected marker-->
+                    <Grid x:Name="GridView_MarkerDetails" DockPanel.Dock="Right" Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+
+                        <Label  HorizontalAlignment="Right" Grid.Column="0" VerticalAlignment="Center">Marker Name:</Label>
+                        <TextBox x:Name="TxtBox_MarkerTitle" HorizontalAlignment="Stretch" Grid.Column="1"></TextBox>
+                        <Label HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top">Marker Type:</Label>
+                        <ComboBox x:Name="CboBox_MarkerType" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">
+                            <ComboBoxItem>Marker</ComboBoxItem>
+                            <ComboBoxItem>Beginning</ComboBoxItem>
+                            <ComboBoxItem>End</ComboBoxItem>
+                            <ComboBoxItem>LoopStart</ComboBoxItem>
+                            <ComboBoxItem>LoopEnd</ComboBoxItem>
+                    </ComboBox>
+
+
+                </Grid>
+                </DockPanel>
+
+            </Grid>
+        <!--</StackPanel>-->
+
+    </Grid>
+
+</Window>
